@@ -1,0 +1,30 @@
+pipeline {
+  agent {   dockerfile {
+    dir './Docker/'
+    filename 'Dockerfile'
+  } }
+  stages {
+    stage('Test toolchain') {
+      steps {
+        sh '''
+          git --version
+          curl --version
+        '''
+      }
+    }
+    stage('Static Code analyse') {
+      steps('1') {
+        sh '''
+          echo "Analyse code for : $BUILD_DISPLAY_NAME"
+        '''
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh '''
+        echo "Deploy_number: $BUILD_NUMBER"
+        '''
+      }
+    }
+  }
+}
