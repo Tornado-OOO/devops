@@ -34,7 +34,7 @@ pipeline {
     }
     stage('Deploy') {
        when { anyOf {
-          branch 'master'
+          branch 'main'
           branch  'develop'
        }}
       steps {
