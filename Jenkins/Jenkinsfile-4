@@ -33,6 +33,10 @@ pipeline {
       }
     }
     stage('Deploy') {
+       when { anyOf {
+          branch 'master'
+          branch  'develop'
+       }}
       steps {
         sh '''
         echo "Deploy_number: $BUILD_NUMBER"
