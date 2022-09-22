@@ -12,11 +12,13 @@ pipeline {
         '''
       }
     }
-    stage('Static Code analyse') {
-      steps('1') {
-        sh '''
-          echo "Analyse code for : $BUILD_DISPLAY_NAME"
-        '''
+    stage('Tests') {
+      steps {
+        sh(label: "Run static code analyse", script: "echo 'Analyse code for : $BUILD_DISPLAY_NAME'" )
+        sh(label: "Run unit test", script: """
+          echo 'Analyse code for : $BUILD_DISPLAY_NAME'
+          echo \$hostname
+        """) 
       }
     }
     stage('Deploy') {
