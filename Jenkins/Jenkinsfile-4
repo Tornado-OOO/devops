@@ -21,6 +21,17 @@ pipeline {
         """) 
       }
     }
+    stage('Build') {
+      when { anyOf {
+          branch 'master'
+          branch  'develop'
+      }}
+      steps {
+        sh '''
+        echo "Build_number: $BUILD_NUMBER"
+        '''
+      }
+    }
     stage('Deploy') {
       steps {
         sh '''
